@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Register
+    Ajout d'utilisateur
 {% endblock %}
 
 {% block body %}
@@ -37,37 +37,52 @@
                     Ajout d'utilisateur
                 </h2>
 
-                {{ form_start(form) }}
+                <p>
+                    Vous pouvez créer un utilisateur en remplissant le formulaire ci-dessous.
+                    <br>
+                        Le login doit être de la forme "prenom.nom" (ex: "jean.dupont").
+                    </p>
 
-                {{ form_row(form.login) }}
+                    {{ form_start(form) }}
 
-                {{ form_row(form.password, {
+                    {{ form_row(form.login) }}
+
+                    {{ form_row(form.password, {
             label: 'Mot de passe',
+            type: 'password',
+            attr: {
+                class: 'fr-input',
+                autocomplete: 'new-password',
+                required: true,
+                min:8,
+                title: 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un nombre.'
+            }
         }) }}
 
-                <button type="submit" class="fr-btn fr-btn--icon-left fr-icon-add-line fr-mt-4w">
-                    Enregister
-                </button>
-                {{ form_end(form) }}
+                    <button type="submit" class="fr-btn fr-btn--icon-left fr-icon-add-line fr-mt-4w">
+                        Enregister
+                    </button>
+                    {{ form_end(form) }}
 
+                </div>
             </div>
-        </div>
 
-    {% else %}
+        {% else %}
 
-        <div class="fr-alert fr-alert--error fr-mt-2w">
-            <h3 class="fr-alert__title">
-                Vous n'êtes pas connecté.
-            </h3>
-            <p>
-                Vous devez
-                <a href="{{ path('app_login') }}" target="_self" title="Se connecter" class="fr-notice__link">
-                    vous connecter
-                </a>
-                au préalable pour inscrire de nouveaux utilisateurs.
-            </p>
-        </div>
+            <div class="fr-alert fr-alert--error fr-mt-2w">
+                <h3 class="fr-alert__title">
+                    Vous n'êtes pas connecté.
+                </h3>
+                <p>
+                    Vous devez
+                    <a href="{{ path('app_login') }}" target="_self" title="Se connecter" class="fr-notice__link">
+                        vous connecter
+                    </a>
+                    au préalable pour inscrire de nouveaux utilisateurs.
+                </p>
+            </div>
 
-    {% endif %}
+        {% endif %}
 
-{% endblock %}
+    {% endblock %}
+    
