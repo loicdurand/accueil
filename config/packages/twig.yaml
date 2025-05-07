@@ -5,7 +5,7 @@ twig:
         app_env: '%env(APP_ENV)%'
         app_name: 'SOLC/DSOLC' 
         app_tagline: '971'
-        app_slug: 'Liens utiles'
+        app_slug: 'Applications mises à disposition des personnels du COMGENDGP'
 
 when@test:
     twig:
