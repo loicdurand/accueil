@@ -9,39 +9,43 @@
 
 {% block body %}
 
-    <nav class="fr-summary" role="navigation" aria-labelledby="fr-summary-title">
-        <h2 class="fr-summary__title" id="fr-summary-title">
-            Sommaire
-        </h2>
-        <ol>
-            <li>
-                <a class="fr-summary__link" id="summary-link-1" href="#anchor-1">
-                    Titre du lien 1
-                </a>
-                <ol>
-                    <li>
-                        <a class="fr-summary__link" id="summary-link-1-1" href="#anchor-1.1">
-                            Titre du lien 1.1
-                        </a>
-                    </li>
-                    <li>
-                        <a class="fr-summary__link" id="summary-link-1-2" href="#anchor-1.2">
-                            Titre du lien 1.2
-                        </a>
-                    </li>
-                    <li>
-                        <a class="fr-summary__link" id="summary-link-1-3" href="#anchor-1.3">
-                            Titre du lien 1.3
-                        </a>
-                    </li>
-                </ol>
-            </li>
-            <li>
-                <a class="fr-summary__link" id="summary-link-2" href="#anchor-2">
-                    Titre du lien 2
-                </a>
-            </li>
-        </ol>
-    </nav>
+    <h2 class="fr-h2 fr-mt-2w">
+        Bienvenue!
+    </h2>
+
+    <p>
+        Ce site référence les différentes applications mises à votre disposition au sein du COMGEND.
+    </p>
+
+    <main class="fr-grid-row">
+
+        <nav class="fr-accordions-group fr-col-12">
+
+            {% for categorie in categories %}
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="accordion-{{ loop.index }}">
+                            {{ categorie.nom }}
+                        </button>
+                    </h3>
+                    <div class="fr-collapse" id="accordion-{{ loop.index }}">
+
+                        <ul>
+                            {% for lien in categorie.liens %}
+                                <li>
+                                    <a rel="noopener external"  href="{{ lien.adresse }}" class="fr-link fr-link--lg">
+                                    {{ lien.nom }}
+                                    </a><span class="fr-ml-2w fr-icon-arrow-right-line fr-link--icon-left">&nbsp;{{ lien.libelle}}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </section>
+            {% endfor %}
+
+        </nav>
+
+    </main>
 
 {% endblock %}

@@ -25,9 +25,6 @@
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
 	</head>
 
 	<body	class=" fr-container">
@@ -91,6 +88,17 @@
 				</div>
 			</div>
 
+			<div class="fr-header__menu fr-modal" id="modal-491" aria-labelledby="button-492">
+        <div class="fr-container">
+            <button class="fr-btn--close fr-btn" aria-controls="modal-491" title="Fermer">
+                Fermer
+            </button>
+            <div class="fr-header__menu-links">
+            </div>
+            
+        </div>
+    </div>
+
 		</header>
 
 		{# BODY #}
@@ -98,5 +106,8 @@
 			{% block body %}{% endblock %}
 		</div>
 
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
 	</body>
 </html>
