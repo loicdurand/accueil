@@ -1,17 +1,102 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html	lang="fr">
+	<head>
+		<meta	charset="UTF-8">
+		<meta	name="viewport"	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>
+			{% block title %}
+				{{ app_name | raw }}
+				-
+				{{ app_tagline }}
+			{% endblock %}
+		</title>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{# FAVICON #}
+		<link	rel="apple-touch-icon"	href="/favicons/apple-touch-icon.png">
+
+		<!-- 180×180 -->
+		<link	rel="icon"	href="/favicons/favicon.svg"	type="image/svg+xml">
+		<link	rel="shortcut icon"	href="/favicons/favicon.ico"	type="image/x-icon">
+
+		<!-- 32×32 -->
+		<link	rel="manifest"	href="/favicons/manifest.webmanifest"	crossorigin="use-credentials">
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+
+	<body	class="container">
+
+		{# HEADER #}
+
+		<header	role="banner"	class="fr-header fr-header hide-s hide-m">
+			<div	class="fr-header__body">
+				<div	class="fr-container">
+					<div	class="fr-header__body-row">
+						<div	class="fr-header__brand fr-enlarge-link">
+							<div	class="fr-header__brand-top">
+								<div	class="fr-header__logo">
+									<a	href="/"	title="Accueil - {{ app_name | raw }} - {{ app_tagline }}">
+										<p	class="fr-logo">
+											Gendarmerie
+											<br/>
+											Nationale
+										</p>
+									</a>
+								</div>
+								<div	class="fr-header__navbar">
+									<button	class="fr-btn--menu fr-btn"	data-fr-opened="false"	aria-controls="modal-491"	id="button-492"	title="Menu">
+										Menu
+									</button>
+								</div>
+							</div>
+							<div	class="fr-header__service">
+								<a	href="/"	title="Accueil - {{ app_name | raw }} - {{ app_tagline }}">
+									<p	class="fr-header__service-title">
+										{{ app_name | raw }}
+										-
+										{{ app_tagline }}
+									</p>
+								</a>
+								<p	class="fr-header__service-tagline">
+									{{ app_slug }}
+								</p>
+							</div>
+						</div>
+
+						<div	class="fr-header__tools">
+							<div	class="fr-header__tools-links">
+								<ul	class="fr-btns-group">
+									<li>
+										{% if app.user is null %}
+											<a	class="fr-btn fr-icon-logout-box-r-line"	href="/login">
+												Se connecter
+											</a>
+										{% else %}
+											<a	class="fr-btn fr-icon-logout-box-r-line"	href="/logout" title="Se déconnecter">
+												Connecté en tant que&nbsp;<span class="bold">{{ app.user.login }}</span>
+											</a>
+										{% endif %}
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</header>
+
+		{# BODY #}
+		<div	class="fr-mb-12w fr-container">
+			{% block body %}{% endblock %}
+		</div>
+
+	</body>
 </html>

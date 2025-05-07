@@ -1,5 +1,11 @@
 twig:
     file_name_pattern: '*.twig'
+    form_themes: ['form/dsfr.html.twig']
+    globals:
+        app_env: '%env(APP_ENV)%'
+        app_name: 'SOLC/DSOLC' 
+        app_tagline: '971'
+        app_slug: 'Liens utiles'
 
 when@test:
     twig:
