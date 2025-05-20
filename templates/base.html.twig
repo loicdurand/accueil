@@ -27,84 +27,10 @@
 
 	</head>
 
-	<body	class=" fr-container">
-
-		{# HEADER #}
-
-		<header	role="banner"	class="fr-header fr-header">
-			<div	class="fr-header__body">
-				<div	class="fr-container">
-					<div	class="fr-header__body-row">
-						<div	class="fr-header__brand fr-enlarge-link">
-							<div	class="fr-header__brand-top">
-								<div	class="fr-header__logo">
-									<a	href="/"	title="Accueil - {{ app_name | raw }} - {{ app_tagline }}">
-										<p	class="fr-logo">
-											Gendarmerie
-											<br/>
-											Nationale
-										</p>
-									</a>
-								</div>
-								<div	class="fr-header__navbar">
-									<button	class="fr-btn--menu fr-btn"	data-fr-opened="false"	aria-controls="modal-491"	id="button-492"	title="Menu">
-										Menu
-									</button>
-								</div>
-							</div>
-							<div	class="fr-header__service">
-								<a	href="/"	title="Accueil - {{ app_name | raw }} - {{ app_tagline }}">
-									<p	class="fr-header__service-title">
-										{{ app_name | raw }}
-										-
-										{{ app_tagline }}
-									</p>
-								</a>
-								<p	class="fr-header__service-tagline">
-									{{ app_slug }}
-								</p>
-							</div>
-						</div>
-
-						<div	class="fr-header__tools">
-							<div	class="fr-header__tools-links">
-								<ul	class="fr-btns-group">
-									<li>
-										{% if app.user is null %}
-											<a	class="fr-btn fr-icon-logout-box-r-line"	href="/login">
-												Se connecter
-											</a>
-										{% else %}
-											<a	class="fr-btn fr-icon-logout-box-r-line"	href="/logout" title="Se déconnecter">
-												Connecté en tant que&nbsp;<span class="bold">{{ app.user.login }}</span>
-											</a>
-										{% endif %}
-									</li>
-								</ul>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-			<div class="fr-header__menu fr-modal" id="modal-491" aria-labelledby="button-492">
-        <div class="fr-container">
-            <button class="fr-btn--close fr-btn" aria-controls="modal-491" title="Fermer">
-                Fermer
-            </button>
-            <div class="fr-header__menu-links">
-            </div>
-            
-        </div>
-    </div>
-
-		</header>
-
+	<body>
 		{# BODY #}
-		<div	class="fr-mb-12w">
-			{% block body %}{% endblock %}
-		</div>
+		{% block body %}{% endblock %}
+		{# fin BODY #}
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}

@@ -16,9 +16,9 @@ final class IndexController extends AbstractController
     {
         $doctrine = $doctrine->getManager();
         $categories = $doctrine->getRepository(Categorie::class)->findAll();
-        $categories = array_filter($categories, function ($category) {
-            return count($category->getLiens()) > 0;
-        });
+        // $categories = array_filter($categories, function ($category) {
+        //     return count($category->getLiens()) > 0;
+        // });
 
         return $this->render('index/index.html.twig', [
             'categories' => $categories,

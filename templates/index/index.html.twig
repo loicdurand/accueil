@@ -9,42 +9,63 @@
 
 {% block body %}
 
-    <h2 class="fr-h2 fr-mt-2w">
-        Bienvenue!
-    </h2>
+    <main class="grid">
 
-    <p>
-        Ce site référence les différentes applications mises à votre disposition au sein du COMGEND.
-    </p>
+        <div class="hide-s bubble indigo-bubble"></div>
+        <div class="hide-s bubble blue-bubble"></div>
+        <div class="hide-s bubble small-p-bubble"></div>
+        <div class="hide-s bubble small-b-bubble"></div>
 
-    <main class="fr-grid-row">
+        {% for key, categorie in categories %}
 
-        <nav class="fr-accordions-group fr-col-12">
+            <div class="categorie_ctnr  categorie-{{ key }} col s12 m6 h50">
 
-            {% for categorie in categories %}
-                <section class="fr-accordion">
-                    <h3 class="fr-accordion__title">
-                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="accordion-{{ loop.index }}">
-                            {{ categorie.nom }}
-                        </button>
-                    </h3>
-                    <div class="fr-collapse" id="accordion-{{ loop.index }}">
+                <nav class="liens_ctnr">
 
-                        <ul>
-                            {% for lien in categorie.liens %}
-                                <li>
-                                    <a rel="noopener external"  href="{{ lien.adresse }}" class="fr-link fr-link--lg">
-                                    {{ lien.nom }}
-                                    </a><span class="fr-ml-2w fr-icon-arrow-right-line fr-link--icon-left">&nbsp;{{ lien.libelle}}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                    <h2 class="categorie_title {{ key <= 1 ? '' : 'hide-m hide-l hide-xl' }}">
+                        {{ categorie.nom }}
+                    </h2>
 
-                    </div>
-                </section>
-            {% endfor %}
+                    <ul class="liens_list">
+                        {% for lien in categorie.liens %}
+                            <li class="lien">
 
-        </nav>
+                                {% if lien.image %}
+                                    <figure class="cadre">
+                                        <a href="{{ lien.adresse }}" class="lien_link" target="_self" rel="noopener noreferrer">
+                                            <img src="{{ lien.image }}" alt="{{ lien.nom }}" />
+                                            <figcaption>
+                                                {{ lien.description }}
+                                            </figcaption>
+                                        </a>
+                                    </figure>
+                                {% else %}
+                                    <div class="cadre">
+                                        <a href="{{ lien.adresse }}" class="lien_link" target="_self" rel="noopener noreferrer">
+                                            <h3>
+                                                {{ lien.nom }}
+                                            </h3>
+                                            <p>
+                                                {{ lien.description }}
+                                            </p>
+                                        </a>
+                                    </div>
+                                {% endif %}
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <h2 class="categorie_title hide-s {{ key > 1 ? '' : 'hide-m hide-l hide-xl' }}">
+                        {{ categorie.nom }}
+                    </h2>
+                </nav>
+
+            </div>
+
+        {% endfor %}
+
+        <a class="main_logo" href="/" title="Accueil - {{ app_name | raw }} - {{ app_tagline }}"></a>
 
     </main>
 
