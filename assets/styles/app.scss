@@ -116,6 +116,21 @@ main {
           background: rgba(17, 17, 17, 0.075);
           border-radius: 6px;
           max-height: 62px;
+          transition: all 0.1s ease-in-out;
+
+          &:hover {
+            transform: scale(1.02);
+            z-index: 10000;
+            position: relative;
+            background: rgba(17, 17, 17, .45);
+
+            & img,
+            & h3,
+            & figcaption,
+            & p {
+              color: var(--grey-0);
+            }
+          }
         }
 
         & img,
