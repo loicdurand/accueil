@@ -18,10 +18,10 @@
 
         {% for categorie in categories %}
             {% for lien in categorie.liens %}
-                {# <a id="link-{{ lien.id }}" href="{{ lien.adresse }}" class="link">
+                <a id="link-{{ lien.id }}" href="{{ lien.adresse }}" class="link">
                     {{ lien.nom }}
                 </a>
-                <span id="hover-{{ lien.id }}" class="hover"></span> #}
+                <span id="hover-{{ lien.id }}" class="hover"></span>
                 <input type="hidden" class="input-data" data-label="{{ lien.nom }}" data-url="{{ lien.adresse }}" data-description="{{ lien.description }}" data-image="{{ lien.image }}" />
             {% endfor %}
         {% endfor %}

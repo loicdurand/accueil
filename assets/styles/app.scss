@@ -45,33 +45,53 @@ main {
 
 }
 
-$windowHeight : 100vh;
-$radius : $windowHeight * 0.6;
-$borderSize : $radius * 0.021;
+$windowHeight : 100; // vh
+$radius : $windowHeight * 0.6; // vh
+$borderSize : $radius * 0.021; // vh
+$totalArea : 48;
+$startPoint : 0 - calc($totalArea / 2);
+$fontSize : $radius * 0.12;
+$linkSize : $radius * 0.25;
+
 
 .circle {
   position: absolute;
-  border: $borderSize solid #fff;
-  width: $radius * 2;
-  height: $radius * 2;
-  border-radius: $radius;
-  top: -$radius * 0.2;
-  left: $radius * -1;
+  border: #{$borderSize}vh solid #fff;
+  width: #{$radius*2}vh;
+  height: #{$radius * 2}vh;
+  border-radius: #{$radius}vh;
+  top: #{-$radius * 0.2}vh;
+  left: #{$radius * -1}vh;
 
 }
 
-// .link {
-//   display: inline-block;
-//   text-decoration: none;
-//   color: #fff;
-//   position: absolute;
-//   z-index: 100;
-  
-// }
+.link {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  position: absolute;
+  z-index: 100;
+  padding-left: #{$radius *1.2 }vh;
+  font-size: #{$fontSize}vh;
+  height: #{$linkSize}px;
+  line-height: #{$linkSize}px;
+  left : #{$borderSize}px;
+  top : #{calc($windowHeight / 2 - $windowHeight * 0.1) + $borderSize}vh;
+  transform-origin: 0px #{$linkSize * 0.5}px;
+  transition: all 0.2s ease-out;
+}
 
-// .hover {
-//   position: absolute;
-//   display: inline-block;
-//   z-index: 50;
-//   opacity: 0;
-// }
+.hover {
+  position: absolute;
+  display: inline-block;
+  z-index: 50;
+  opacity: 0;
+  left: #{$borderSize}px;
+  top : #{calc($windowHeight * 0.4) + $borderSize}px;
+  width : #{$radius + calc($borderSize / 2)}px;
+  height : #{$linkSize}px;
+  border-right : #{$borderSize * 2}px solid #fff;
+  transform-origin: 0px #{$linkSize * 0.5}px;
+  transition: all 0.2s ease-out;
+
+}
