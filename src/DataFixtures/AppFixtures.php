@@ -14,28 +14,31 @@ class AppFixtures extends Fixture
         $categories = [
             "Police Judiciaire" => [
                 [
-                    "adresse" => "https://www.google.com",
-                    "nom" => "Google",
-                    "description" => "Google est un moteur de recherche",
-                    "image" => "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_92x30dp.png"
+                    "adresse" => "/cerbere",
+                    "nom" => "Cerbere",
+                    "description" => "Application destinée aux unités de recherche",
                 ]
             ],
-            "Autres" => [
+            "Vie pratique" => [
                 [
-                    "adresse" => "/",
-                    "nom" => "Accueil",
-                    "description" => "Page d'accueil"
+                    "adresse" => "#",
+                    "nom" => "GRR",
+                    "description" => "Gestion des Réservations"
+                ],
+                [
+                    "adresse" => "#",
+                    "nom" => "Résa971",
+                    "description" => "Réservations de véhicules"
+                ],
+                [
+                    "adresse" => "#",
+                    "nom" => "Silo",
+                    "description" => "Le portail du COMGEND Guadeloupe"
                 ]
             ],
             "Matériel" => [
                 [
-                    "adresse" => "https://www.google.com",
-                    "nom" => "Google",
-                    "description" => "Google est un moteur de recherche",
-                    "image" => "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_92x30dp.png"
-                ],
-                [
-                    "adresse" => "/",
+                    "adresse" => "#",
                     "nom" => "Géaude",
                     "description" => "Géaude est un site d'inventaire de matériel informatique",
                 ]
@@ -43,10 +46,9 @@ class AppFixtures extends Fixture
             ],
             "Informatique" => [
                 [
-                    "adresse" => "https://www.google.com",
-                    "nom" => "Google",
-                    "description" => "Google est un moteur de recherche",
-                    "image" => "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_92x30dp.png"
+                    "adresse" => "#",
+                    "nom" => "Solaris",
+                    "description" => "Réservations de véhicules"
                 ]
             ]
         ];

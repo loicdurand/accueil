@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Accueil -
+    {{ app_name | raw }}
+    -
+    {{ app_tagline }}
+{% endblock %}
+
+{% block body %}
+
+    <main class="grid">
+
+        <div class="hide-s bubble indigo-bubble"></div>
+        <div class="hide-s bubble blue-bubble"></div>
+        <div class="hide-s bubble small-p-bubble"></div>
+        <div class="hide-s bubble small-b-bubble"></div>
+
+        {% for key, categorie in categories %}
+
+            <div class="categorie_ctnr  categorie-{{ key }} col s12 m6 h50">
+
+                <nav class="liens_ctnr">
+
+                    <h2 class="categorie_title {{ key <= 1 ? '' : 'hide-m hide-l hide-xl' }}">
+                        {{ categorie.nom }}
+                    </h2>
+
+                    <ul class="liens_list">
+                        {% for lien in categorie.liens %}
+                            <li class="lien">
+
+                                {% if lien.image %}
+                                    <figure class="cadre">
+                                        <a href="{{ lien.adresse }}" class="lien_link" target="_self" rel="noopener noreferrer">
+                                            <img src="{{ lien.image }}" alt="{{ lien.nom }}" />
+                                            <figcaption>
+                                                {{ lien.description }}
+                                            </figcaption>
+                                        </a>
+                                    </figure>
+                                {% else %}
+                                    <div class="cadre">
+                                        <a href="{{ lien.adresse }}" class="lien_link" target="_self" rel="noopener noreferrer">
+                                            <h3>
+                                                {{ lien.nom }}
+                                            </h3>
+                                            <p>
+                                                {{ lien.description }}
+                                            </p>
+                                        </a>
+                                    </div>
+                                {% endif %}
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <h2 class="categorie_title hide-s {{ key > 1 ? '' : 'hide-m hide-l hide-xl' }}">
+                        {{ categorie.nom }}
+                    </h2>
+                </nav>
+
+            </div>
+
+        {% endfor %}
+
+        <a class="main_logo" href="/" title="Accueil - {{ app_name | raw }} - {{ app_tagline }}"></a>
+
+    </main>
+
+{% endblock %}
