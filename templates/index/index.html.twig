@@ -9,17 +9,23 @@
 
 {% block body %}
 
+    <div class="hide-s bubble indigo-bubble"></div>
+    <div class="hide-s bubble blue-bubble"></div>
+    <div class="hide-s bubble small-p-bubble"></div>
+    <div class="hide-s bubble small-b-bubble"></div>
+
     <main class="grid">
 
         <div class="col logo logo-solc"></div>
         <div class="col logo logo-comgend"></div>
+        <h1>COMGEND<span>Guadeloupe</span></h1>
 
         <div id="circle" class="circle"></div>
 
         {% for categorie in categories %}
             {% for lien in categorie.liens %}
                 <a id="link-{{ lien.id }}" href="{{ lien.adresse }}" class="link">
-                    {{ lien.nom }}
+                    {{ lien.nom | raw }}
                 </a>
                 <span id="hover-{{ lien.id }}" class="hover"></span>
                 <input type="hidden" class="input-data" data-label="{{ lien.nom }}" data-url="{{ lien.adresse }}" data-description="{{ lien.description }}" data-image="{{ lien.image }}" />
