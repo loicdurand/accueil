@@ -3,7 +3,7 @@ twig:
     form_themes: ['form/dsfr.html.twig']
     globals:
         app_env: '%env(APP_ENV)%'
-        app_name: 'SOLC/DSOLC' 
+        app_name: 'COMGENDGP' 
         app_tagline: '971'
         app_slug: 'Applications mises à disposition des personnels du COMGENDGP'
 
