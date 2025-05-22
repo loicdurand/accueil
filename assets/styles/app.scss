@@ -38,10 +38,10 @@ body {
   }
 
   & .blue-bubble {
-    width: 55vh;
-    height: 55vh;
+    width: 40vh;
+    height: 40vh;
     left: 12vh;
-    bottom: 1vh;
+    bottom: 10vh;
     background-color: var(--blue-bubble);
   }
 
@@ -132,7 +132,7 @@ h1 {
   height: #{$linkSize}px;
   line-height: #{$linkSize}px;
   left : #{$borderSize}px;
-  top : #{calc($windowHeight / 2 - $windowHeight * 0.1) + $borderSize}vh;
+  top : 50vh;
   transform-origin: 0px #{$linkSize * 0.5}px;
   transition: all 0.2s ease-out;
 
@@ -143,19 +143,4 @@ h1 {
       opacity: 1;
     }
   }
-}
-
-.hover {
-  position: absolute;
-  display: inline-block;
-  z-index: 50;
-  opacity: 0;
-  left: -8px;
-  top : #{calc($windowHeight * 0.4) + $borderSize}vh;
-  width : calc(#{$radius}vh + #{10*$borderSize}px);
-  height : #{$fontSize}vh;
-  border-right : #{5 * $borderSize }px solid rgba(17, 17, 17, .075);
-  transform-origin: 0px #{$linkSize * 0.45}vh;
-  transition: all 0.2s ease-out;
-  padding-left: #{$radius - 10*$borderSize}vh;
 }

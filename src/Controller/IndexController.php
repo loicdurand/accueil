@@ -16,12 +16,18 @@ final class IndexController extends AbstractController
     {
         $doctrine = $doctrine->getManager();
         $categories = $doctrine->getRepository(Categorie::class)->findAll();
-        // $categories = array_filter($categories, function ($category) {
-        //     return count($category->getLiens()) > 0;
-        // });
+
+        $nb_liens = 0;
+        foreach ($categories as $category) {
+            $liens = $category->getLiens();
+            foreach ($liens as $lien) {
+                $nb_liens++;
+            }
+        }
 
         return $this->render('index/index.html.twig', [
             'categories' => $categories,
+            'nb_liens' => $nb_liens
         ]);
     }
 }

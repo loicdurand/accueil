@@ -72,6 +72,7 @@ class AppFixtures extends Fixture
                     $lienEntity->setImage(null);
                 }
                 $lienEntity->setCategorie($categorie);
+                $lienEntity->setActif(true);
                 $manager->persist($lienEntity);
             }
         }

@@ -51,7 +51,9 @@ class Categorie
      */
     public function getLiens(): Collection
     {
-        return $this->liens;
+        return new ArrayCollection(array_filter($this->liens->toArray(), function ($lien) {
+            return $lien->isActif();
+        }));
     }
 
     public function addLien(Lien $lien): static
