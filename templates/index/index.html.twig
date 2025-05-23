@@ -9,39 +9,26 @@
 
 {% block body %}
 
-    <div class="hide-s bubble indigo-bubble"></div>
-    <div class="hide-s bubble blue-bubble"></div>
-    <div class="hide-s bubble small-p-bubble"></div>
-    <div class="hide-s bubble small-b-bubble"></div>
-
     <main class="grid">
 
-        <div class="col logo logo-solc"></div>
-        <div class="col logo logo-comgend"></div>
-        <h1>
-            COMGEND
-            <span>
-                Guadeloupe
-            </span>
-        </h1>
-
         <div id="circle" class="circle"></div>
-
-        {% set totalArea = 48 %}
-        {% set increment = totalArea / ( nb_liens - 1 ) %}
-        {% set startPoint = 0 - (totalArea / 2) %}
-        {% set i = 0 %}
-
-        {% for categorie in categories %}
-            {% for lien in categorie.liens %}
-                {% set deg = startPoint + i * increment %}
-                <a id="link-{{ lien.id }}" href="{{ lien.adresse }}" class="link" style=";transform: rotate( {{ deg }}deg );">
-                    {{ lien.nom | raw }}
-                </a>
-                <input type="hidden" class="input-data" data-label="{{ lien.nom }}" data-url="{{ lien.adresse }}" data-description="{{ lien.description }}" data-image="{{ lien.image }}" />
-                {% set i = i + 1 %}
-            {% endfor %}
-        {% endfor %}
-
+        <div class="categorie-ctnr grid">
+            <div class="categorie">
+                {% for categorie in categories %}
+                    {# <div class="categorie-ctnr col s6 grid">
+                    <div class="categorie"> #}
+                    {% for lien in categorie.liens %}
+                        <a id="link-{{ lien.id }}" href="{{ lien.adresse }}" class="link-ctnr col" data-before="{{ lien.nom | raw | first }}">
+                            <div class="link">
+                                {{ lien.nom | raw }}
+                            </div>
+                        </a>
+                    {# <input type="hidden" class="input-data" data-label="{{ lien.nom }}" data-url="{{ lien.adresse }}" data-description="{{ lien.description }}" data-image="{{ lien.image }}" /> #}
+                    {% endfor %}
+                {# </div>
+                </div> #}
+                {% endfor %}
+            </div>
+        </div>
     </main>
 {% endblock %}

@@ -2,14 +2,6 @@
 // @use "/node_modules/@gouvfr/dsfr/dist/utility/icons/icons.main.min.css";
 @use "./starter-complet";
 
-$windowHeight : 100; // vh
-$radius : $windowHeight * 0.6; // vh
-$borderSize : $radius * 0.021; // vh
-$totalArea : 48;
-$startPoint : 0 - calc($totalArea / 2);
-$fontSize : $radius * 0.12;
-$linkSize : $radius * 0.25;
-
 :root {
   --blue-bubble: #bbe6f3;
   --small-b-bubble: #bae5f2;
@@ -33,22 +25,22 @@ body {
     width: 460px;
     height: 460px;
     right: -160px;
-    top: -110px;
+    bottom: -110px;
     background-color: var(--indigo-1);
   }
 
   & .blue-bubble {
-    width: 40vh;
-    height: 40vh;
-    left: 12vh;
-    bottom: 10vh;
+    width: 30vw;
+    height: 30vw;
+    left: 35vw;
+    bottom: 55vh;
     background-color: var(--blue-bubble);
   }
 
   & .small-b-bubble {
     width: 50px;
     height: 50px;
-    right: 40px;
+    left: 40px;
     bottom: 85px;
     background-color: var(--small-b-bubble);
   }
@@ -56,10 +48,71 @@ body {
   & .small-p-bubble {
     width: 105px;
     height: 105px;
-    left: -45px;
+    right: -45px;
     top: 140px;
     background-color: var(--indigo-1);
   }
+}
+
+.header {
+  height: 45vh;
+  padding: 0;
+
+  .title-ctnr {
+    display: block;
+
+    & h1 {
+      width: 100%;
+      text-align: center;
+      letter-spacing: 2px;
+      font-size: 6vh;
+      color: #fff;
+      font-weight: bold;
+      font-family: Helvetica;
+      text-shadow: 0 .5px 0 #ccc, 0 1px 0 #c9c9c9, 0 1.5px 0 #bbb, 0 2px 0 #b9b9b9, 0 2.55px 0 #aaa, 0 3px 1px rgba(0, 0, 0, .1), 0 0 3.5px rgba(0, 0, 0, .1), 0 1px 2px rgba(0, 0, 0, .3), 0 5px 2px rgba(0, 0, 0, .2), 0 0px 0px rgba(0, 0, 0, .25), 0 6px 2px rgba(0, 0, 0, .2), 0 6px 0px rgba(0, 0, 0, .15);
+
+      & span {
+        display: block;
+      }
+    }
+  }
+
+  .logo-ctnr {
+    position: relative;
+    display: block;
+    min-width: 322px;
+    width: 322px;
+    padding: 0;
+    margin: 0 auto;
+    height: 21vh;
+
+    & .logo {
+      min-height: 170px;
+      min-width: 170px;
+      height: 170px;
+      width: 170px;
+      display: block;
+      float: left;
+      background-repeat: no-repeat;
+
+      &.logo-solc {
+        border-radius: 50%;
+        background-image: url(/assets/images/ecusson.jpg);
+        background-size: cover;
+        left: 0;
+      }
+
+      &.logo-comgend {
+        background-image: url(/assets/images/COMGENDGP_ecusson.png);
+        background-size: contain;
+        z-index: -1;
+        position: relative;
+        margin-left: -22px;
+      }
+    }
+  }
+
+
 }
 
 main {
@@ -69,78 +122,65 @@ main {
   padding: 15px;
 }
 
-.logo {
-  width: 30vh;
-  height: 30vh;
-  display: block;
-  top: 25vh; //35vh
-  background-repeat: no-repeat;
-
-  &.logo-solc {
-    border-radius: 50%;
-    background-image: url(/assets/images/ecusson.jpg);
-    background-size: cover;
-    left: 0;
-  }
-
-  &.logo-comgend {
-    background-image: url(/assets/images/COMGENDGP_ecusson.png);
-    left: -70px;
-    background-size: contain;
-    background-size: contain;
-    z-index: -1;
-  }
-}
-
-h1 {
-  top: 60vh;
-  position: absolute;
-  width: 30vh;
-  text-align: center;
-  letter-spacing: 2px;
-  font-size: 5vh;
-  margin-left: 10vh;
-  color: #fff;
-  font-weight: bold;
-  font-family: Helvetica;
-  text-shadow: 0 .5px 0 #ccc, 0 1px 0 #c9c9c9, 0 1.5px 0 #bbb, 0 2px 0 #b9b9b9, 0 2.55px 0 #aaa, 0 3px 1px rgba(0, 0, 0, .1), 0 0 3.5px rgba(0, 0, 0, .1), 0 1px 2px rgba(0, 0, 0, .3), 0 5px 2px rgba(0, 0, 0, .2), 0 0px 0px rgba(0, 0, 0, .25), 0 6px 2px rgba(0, 0, 0, .2), 0 6px 0px rgba(0, 0, 0, .15);
-
-  & span {
-    display: block;
-  }
-}
-
 .circle {
   position: absolute;
-  border: .26vh solid rgba(17, 17, 17, .15);
-  width: #{$radius*2}vh;
-  height: #{$radius * 2}vh;
-  border-radius: #{$radius}vh;
-  top: #{-$radius * 0.2}vh;
-  left: #{$radius * -1}vh;
-  background-color: rgba(17, 17, 17, .0075);
+  border: 0.26vh solid rgba(17, 17, 17, 0.15);
+  background-color: rgba(17, 17, 17, 0.0075);
+  width: 200%;
+  height: 100vh;
+  top: -105vh;
+  left: -50%;
+  margin-left: -15px;
+  border-radius: 50%;
 }
 
-.link {
-  display: inline-block;
-  text-decoration: none;
-  color: var(--text-color);
-  position: absolute;
-  z-index: 100;
-  padding-left: #{$radius *1.2 }vh;
-  font-size: #{$fontSize}vh;
-  height: #{$linkSize}px;
-  line-height: #{$linkSize}px;
-  left : #{$borderSize}px;
-  top : 50vh;
-  transform-origin: 0px #{$linkSize * 0.5}px;
-  transition: all 0.2s ease-out;
+.categorie-ctnr {
+  height: 45vh;
+  padding: 4px 4px;
 
-  &:hover {
-    padding-left: #{$radius *1.25 }vh;
+  .categorie {
+    // border: 1px solid var(--grey-4);
+    background: rgba(255, 255, 255, .25);
+    border-radius: 8px;
+    height: 100%;
+    padding: 8px;
+  }
 
-    &+.hover {
-      opacity: 1;
+  & .link-ctnr {
+    padding: 4rem 1rem 1rem 1rem;
+    width: 10rem;
+    margin-bottom: 1rem;
+
+    &:before {
+      content: attr(data-before);
+      background: var(--red-8);
+      width: 3rem;
+      height: 3rem;
+      display: block;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 3.5rem;
+      font-size: 2rem;
+      text-align: center;
+      color: var(--grey-2);
+      font-weight: 100;
+      line-height: 1.5;
+    }
+
+    &:hover .link {
+      color: var(--grey-10);
+      font-weight: 500;
+    }
+
+    .link {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: all 0.2s ease-out;
+      font-size: 1.5rem;
+      text-align: center;
+      width: 100%;
     }
   }
 }
