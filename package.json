@@ -23,7 +23,7 @@
     "@eslint/js": "^9.17.0",
     "@symfony/webpack-encore": "^5.0.0",
     "browser-sync": "^3.0.4",
-    "browser-sync-webpack-plugin": "^2.3.0",
+    "browser-sync-webpack-plugin": "^2.4.0",
     "core-js": "^3.38.0",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.1",
