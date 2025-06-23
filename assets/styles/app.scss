@@ -1,6 +1,7 @@
 // @use '/node_modules/@gouvfr/dsfr/dist/dsfr.css';
 // @use "/node_modules/@gouvfr/dsfr/dist/utility/icons/icons.main.min.css";
 @use "./starter-complet";
+@use "./form.scss";
 
 :root {
   --blue-bubble: #bbe6f3;
@@ -11,7 +12,8 @@
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: #f3fcfd;
 
   & .bubble {
@@ -85,6 +87,7 @@ body {
     padding: 0;
     margin: 0 auto;
     height: 21vh;
+    min-height: 186px;
 
     & .logo {
       min-height: 170px;
@@ -111,7 +114,6 @@ body {
       }
     }
   }
-
 
 }
 
@@ -147,30 +149,83 @@ main {
   }
 
   & .link-ctnr {
-    padding: 4rem 1rem 1rem 1rem;
-    width: 10rem;
+    padding: 1rem;
+    min-width: 15ch;
     margin-bottom: 1rem;
+
+    &.bg-blue:before {
+      background-color: var(--blue-8);
+    }
+
+    &.bg-red:before {
+      background-color: var(--red-8);
+    }
+
+    &.bg-green:before {
+      background-color: var(--green-8);
+    }
+
+    &.bg-brown:before {
+      background-color: var(--brown-8);
+    }
+
+    &.bg-teal:before {
+      background-color: var(--teal-8);
+    }
+
+    &.bg-purple:before {
+      background-color: var(--purple-8);
+    }
+
+    &.bg-yellow:before {
+      background-color: var(--yellow-8);
+    }
+
+    &.bg-indigo:before {
+      background-color: var(--indigo-8);
+    }
+
+    &.bg-grey:before {
+      background-color: var(--grey-8);
+    }
+
+    &.bg-orange:before {
+      background-color: var(--orange-8);
+    }
 
     &:before {
       content: attr(data-before);
-      background: var(--red-8);
       width: 3rem;
       height: 3rem;
       display: block;
       border-radius: 50%;
-      position: absolute;
-      top: 0;
-      left: 3.5rem;
       font-size: 2rem;
       text-align: center;
       color: var(--grey-2);
       font-weight: 100;
       line-height: 1.5;
+      margin: 1rem auto;
+
+      &:hover .link {
+        color: red;
+      }
     }
+
+    // &:hover:before {
+    //   color: var(--grey-10);
+    //   width: 3.05rem;
+    //   height: 3.05rem;
+    // }
 
     &:hover .link {
       color: var(--grey-10);
       font-weight: 500;
+    }
+
+    &:hover .link+.tooltip {
+      cursor: pointer;
+      display: block;
+      opacity: 1;
     }
 
     .link {
@@ -178,9 +233,77 @@ main {
       text-decoration: none;
       color: var(--text-color);
       transition: all 0.2s ease-out;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       text-align: center;
       width: 100%;
+
+      &:not([data-statut=""]):after {
+        content: attr(data-statut);
+        border: 1px solid;
+        border-radius: 3px;
+        font-size: 0.75rem;
+        display: inline-block;
+        background: #fff;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+      }
+
+      &:not([data-statut=""])+.tooltip {
+        bottom: 6.5rem;
+      }
+
+      &+.tooltip {
+        display: none;
+        opacity: 0;
+        border-radius: 6px;
+        text-align: center;
+        position: absolute;
+        bottom: 6.5rem;
+        background: var(--grey-9);
+        color: var(--grey-0);
+        padding: 3px 0;
+        transition: opacity 500ms ease;
+        width: 13ch;
+        cursor: initial;
+
+        &::after {
+          content: "";
+          background: var(--grey-9);
+          width: .75rem;
+          height: .75rem;
+          display: inline-block;
+          transform: rotate(45deg);
+          position: absolute;
+          left: 6ch;
+          bottom: -0.25rem;
+          z-index: -1;
+        }
+      }
     }
+  }
+}
+
+.statut_connexion-ctnr {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-weight: 500;
+  padding: 4px 4px;
+  font-size: 1.25rem;
+  color: var(--text-color);
+  text-align: center;
+  display: block;
+  width: 100%;
+
+  & .log-link {
+    color: var(--grey-10);
+    /*var(--text-color);*/
+    text-decoration: underline;
+  }
+
+  & .login {
+    color: var(--grey-10);
   }
 }

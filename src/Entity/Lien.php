@@ -26,10 +26,20 @@ class Lien
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $statut = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     #[ORM\Column]
     private ?bool $actif = null;
+
+    /**
+     * @var list<string> les roles ayant accès au lien
+     * !!! si vide, accès public !!!
+     */
+    #[ORM\Column]
+    private array $roles = [];
 
     public function getId(): ?int
     {
@@ -84,6 +94,18 @@ class Lien
         return $this;
     }
 
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): static
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
     public function getImage(): ?string
     {
         return $this->image;
@@ -105,6 +127,21 @@ class Lien
     {
         $this->actif = $actif;
 
+        return $this;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        return array_unique($roles);
+    }
+
+    /**
+     * @param list<string> $roles
+     */
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
         return $this;
     }
 }

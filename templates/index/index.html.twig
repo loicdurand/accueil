@@ -1,34 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Les sites du
-    {{ app_name | raw }}
-    -
-    {{ app_tagline }}
+	Les sites du
+	{{ app_name | raw }}
+	-
+	{{ app_tagline }}
 {% endblock %}
 
 {% block body %}
 
-    <main class="grid">
+	<main class="grid">
 
-        <div id="circle" class="circle"></div>
-        <div class="categorie-ctnr grid">
-            <div class="categorie">
-                {% for categorie in categories %}
-                    {# <div class="categorie-ctnr col s6 grid">
-                    <div class="categorie"> #}
-                    {% for lien in categorie.liens %}
-                        <a id="link-{{ lien.id }}" href="{{ lien.adresse }}" class="link-ctnr col" data-before="{{ lien.nom | raw | first }}">
-                            <div class="link">
-                                {{ lien.nom | raw }}
-                            </div>
-                        </a>
-                    {# <input type="hidden" class="input-data" data-label="{{ lien.nom }}" data-url="{{ lien.adresse }}" data-description="{{ lien.description }}" data-image="{{ lien.image }}" /> #}
-                    {% endfor %}
-                {# </div>
-                </div> #}
-                {% endfor %}
-            </div>
-        </div>
-    </main>
+		<div id="circle" class="circle"></div>
+		<div class="categorie-ctnr">
+			<div class="categorie grid">
+				{% set i = 0 %}
+				
+				{% for categorie in categories %}
+					{% for lien in categorie.getLiens(user.roles) %}
+
+						<a id="link-{{ lien.id }}" href="{{ lien.adresse }}" class="link-ctnr col bg-{{colors[i]}}" data-before="{{ lien.nom | raw | first }}" style="width: calc(100% / {{nb_liens}});">
+							<div class="link" data-statut="{{lien.statut}}">
+								{{ lien.nom | raw }}
+							</div>
+							<p class="tooltip">{{lien.description}}</p>
+						</a>
+
+						{% set i = ( i < colors | length - 1  ) ? i + 1 : 0 %}
+
+					{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
+
+		{% if user.login %}
+			<p class="statut_connexion-ctnr">
+				Connecté en tant que&nbsp;<span class="login">{{user.login}}</span>&nbsp;(<a class="logout-link log-link" href="/logout">déconnexion</a>).
+			</p>
+		{% else %}
+			<p class="statut_connexion-ctnr">
+				<a class="login-link log-link" href="/login">Connectez-vous</a>&nbsp;pour afficher les liens non publics.
+			</p>
+		{% endif %}
+
+	</main>
 {% endblock %}

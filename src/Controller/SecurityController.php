@@ -6,12 +6,53 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use App\Entity\User;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+
+use App\Service\SsoService;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    private $requestStack, $session, $env;
+    public $request;
+
+    public function __construct(RequestStack $requestStack)
     {
+        $this->request = Request::createFromGlobals();
+        $this->requestStack = $requestStack;
+        $this->session = $this->requestStack->getSession();
+    }
+
+    #[Route(path: '/login', name: 'app_login')]
+    public function login(#[CurrentUser] ?User $user, AuthenticationUtils $authenticationUtils): Response
+    {
+        $this->env = $this->getParameter('app.env');
+        if ($this->env === 'prod') {
+            $sso = new SsoService(true);
+            $usr = $sso::user();
+
+            // /* paramètres session */
+            if (is_null($user))
+                $user = new User();
+
+            $roles = ['ROLE_USER'];
+            if ($usr->unite === 'SEL BSF COMGENDGP')
+                $roles[] = 'ROLE_SEL';
+
+            if (in_array($usr->unite, ['SOLC SAJ COMGENDGP', 'DSOLC BAIE-MAHAULT', 'DSOLC ST-MARTIN']))
+                $roles[] = 'ROLE_SIC';
+
+            $this->session->set('HTTP_LOGIN', $usr->uid);
+            $this->session->set('HTTP_ROLES', $roles);
+
+            return $this->redirectToRoute('app_index');
+        } elseif (! is_null($user)) {
+
+            return $this->redirectToRoute('app_index');
+        }
+
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 

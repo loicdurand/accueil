@@ -8,15 +8,35 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * @extends ServiceEntityRepository<User>
  */
-class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface, UserLoaderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+
+    private $requestStack, $session, $env;
+    public $request;
+
+    public function __construct(ManagerRegistry $registry, RequestStack $requestStack)
     {
         parent::__construct($registry, User::class);
+        $this->request = Request::createFromGlobals();
+        $this->requestStack = $requestStack;
+        $this->session = $this->requestStack->getSession();
+    }
+
+    public function loadUserByIdentifier(?string $empty_string = ""): ?User
+    {
+        $login = $this->session->get('HTTP_LOGIN');
+        $roles = $this->session->get('HTTP_ROLES');
+        $user = new User();
+        $user->setLogin($login);
+        $user->setRoles($roles);
+        return $user;
     }
 
     /**

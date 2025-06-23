@@ -49,11 +49,36 @@ class Categorie
     /**
      * @return Collection<int, Lien>
      */
-    public function getLiens(): Collection
+    public function getLiens(?array $user_roles = []): Collection
     {
-        return new ArrayCollection(array_filter($this->liens->toArray(), function ($lien) {
-            return $lien->isActif();
+        $user_roles = is_null($user_roles) ? [] : $user_roles;
+
+        return new ArrayCollection(array_filter($this->liens->toArray(), function ($lien) use ($user_roles) {
+            if (!$lien->isActif())
+                return false;
+
+            $lien_roles = $lien->getRoles();
+            if (count($lien_roles) === 0)
+                return true;
+
+            $found = false;
+            foreach ($user_roles as $role) {
+                if (in_array($role, $lien_roles))
+                    $found = true;
+            }
+            return $found;
         }));
+    }
+
+    public function resetLiens(Collection $liens)
+    {
+        foreach ($this->liens as $lien) {
+            $this->removeLien($lien);
+        }
+        foreach ($liens as $lien) {
+            $this->addlien($lien);
+        }
+        return $this;
     }
 
     public function addLien(Lien $lien): static

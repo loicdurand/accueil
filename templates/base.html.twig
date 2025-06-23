@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html	lang="fr">
+<html lang="fr">
 	<head>
-		<meta	charset="UTF-8">
-		<meta	name="viewport"	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<title>
 			{% block title %}
 				{{ app_name | raw }}
@@ -12,13 +12,12 @@
 		</title>
 
 		{# FAVICON #}
-		<link	rel="apple-touch-icon"	href="/favicons/apple-touch-icon.png">
+		{# <link	rel="apple-touch-icon"	href="/favicons/apple-touch-icon.png"> #}
 
 		<!-- 180×180 -->
-		<link	rel="shortcut icon"	href="{{ asset("	/favicons/favicon.ico") }}"	type="image/x-icon">
-
-		<!-- 32×32 -->
-		<link	rel="manifest"	href="{{ asset("	/favicons/site.webmanifest") }}"	crossorigin="use-credentials">
+		<link
+		rel="shortcut icon" href="{{ asset("/favicons/favicon.ico") }}" type="image/x-icon"> <!-- 32×32 -->
+		<link rel="manifest" href="{{ asset("/favicons/site.webmanifest") }}" crossorigin="use-credentials">
 
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
@@ -26,22 +25,22 @@
 
 	</head>
 
-	<body	class="container">
+	<body class="container">
 
-		<div	class="hide-s bubble indigo-bubble"></div>
-		<div	class="hide-s bubble small-p-bubble"></div>
-		<div	class="hide-s bubble small-b-bubble"></div>
+		<div class="hide-s bubble indigo-bubble"></div>
+		<div class="hide-s bubble small-p-bubble"></div>
+		<div class="hide-s bubble small-b-bubble"></div>
 
-		<header	class="header">
+		<header class="header">
 
-			<div	class="hide-s bubble blue-bubble"></div>
+			<div class="hide-s bubble blue-bubble"></div>
 
-			<div	class="logo-ctnr">
-				<div	class="logo logo-solc"></div>
-				<div	class="logo logo-comgend"></div>
+			<div class="logo-ctnr">
+				<div class="logo logo-solc"></div>
+				<div class="logo logo-comgend"></div>
 			</div>
 
-			<div	class="title-ctnr">
+			<div class="title-ctnr">
 				<h1>
 					COMGEND
 					<span>

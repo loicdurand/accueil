@@ -1,0 +1,150 @@
+/**
+@Credits: DSFR https://www.systeme-de-design.gouv.fr/
+*/
+:root {
+    --grey-950-100: #eee;
+    --grey-950-100-hover: #d2d2d2;
+    --grey-950-100-active: #c1c1c1;
+    --grey-900-175: #ddd;
+
+    --background-contrast-grey: var(--grey-950-100);
+    --background-contrast-grey-hover: var(--grey-950-100-hover);
+    --background-contrast-grey-active: var(--grey-950-100-active);
+    --blue-france-sun-113-625: #000091;
+    --blue-france-sun-113-625-hover: #1212ff;
+    --blue-france-sun-113-625-active: #2323ff;
+    --background-action-high-blue-france-hover: var(--blue-france-sun-113-625-hover);
+    --background-action-high-blue-france-active: var(--blue-france-sun-113-625-active);
+    --text-action-high-blue-france: var(--blue-france-sun-113-625);
+    --border-default-grey: var(--grey-900-175);
+}
+
+.fr-input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+
+
+    & .fr-label {
+        color: #161616;
+        color: var(--text-label-grey);
+        display: block;
+        font-size: 1rem;
+        line-height: 1.5rem;
+
+        &+.fr-input {
+            margin-top: .5rem;
+            max-height: 2.5rem;
+            --idle: transparent;
+            --hover: var(--background-contrast-grey-hover);
+            --active: var(--background-contrast-grey-active);
+            background-color: #eee;
+            background-color: var(--background-contrast-grey);
+            border-radius: .25rem .25rem 0 0;
+            box-shadow: inset 0 -2px 0 0 #3a3a3a;
+            box-shadow: inset 0 -2px 0 0 var(--border-plain-grey);
+            color: #3a3a3a;
+            color: var(--text-default-grey);
+            display: block;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            padding: .5rem 1rem;
+            width: 100%;
+        }
+    }
+}
+
+.fr-fieldset {
+    align-items: last baseline;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 -.75rem 1rem;
+    padding: 0 .25rem;
+    position: relative;
+
+    & .fr-fieldset__legend {
+        color: #161616;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.5rem;
+        margin-left: -.25rem;
+        margin-right: -.25rem;
+        padding-bottom: 1rem;
+        padding-left: .75rem;
+        padding-right: .75rem;
+        width: 100%;
+
+        &.fr-fieldset__legend--regular {
+            font-weight: 400;
+        }
+    }
+
+    & .fr-fieldset__element {
+        flex: 1 1 100%;
+        margin-bottom: 1rem;
+        max-width: 100%;
+        padding-left: .5rem;
+        padding-right: .5rem;
+    }
+
+    & .fr-checkbox-group {
+        position: relative;
+
+        & input[type="checkbox"] {
+            height: 1.5rem;
+            margin: -2px 0;
+            position: absolute;
+            width: 1.5rem;
+
+            &+label {
+                --data-uri-svg: none;
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                margin-left: 2rem;
+                position: relative;
+            }
+        }
+    }
+}
+
+.fr-btn {
+    --text-spacing: 0;
+    --title-spacing: 0;
+    --underline-img: none;
+    --hover-tint: var(--hover);
+    --idle: transparent;
+    --hover: var(--background-action-high-blue-france-hover);
+    --active: var(--background-action-high-blue-france-active);
+    align-items: center;
+    background-color: #000091;
+    background-color: var(--background-action-high-blue-france);
+    color: #f5f5fe;
+    color: var(--text-inverted-blue-france);
+    display: inline-flex;
+    flex-direction: row;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    min-height: 2.5rem;
+    padding: .5rem 1rem;
+    width: -moz-fit-content;
+    width: fit-content;
+
+    &.fr-btn--tertiary {
+        --hover: inherit;
+        --active: inherit;
+        background-color: transparent;
+        box-shadow: inset 0 0 0 1px #ddd;
+        box-shadow: inset 0 0 0 1px var(--border-default-grey);
+        color: #000091;
+        color: var(--text-action-high-blue-france);
+
+        &:hover {
+            background-color: var(--active-tint);
+        }
+    }
+}
