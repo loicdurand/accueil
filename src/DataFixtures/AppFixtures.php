@@ -52,6 +52,11 @@ class AppFixtures extends Fixture
                     "adresse" => "#",
                     "nom" => "Silo",
                     "description" => "Le portail du COMGEND Guadeloupe"
+                ],
+                [
+                    "adresse" => "/eleksyon",
+                    "nom" => "Elèksyon",
+                    "description" => "Le vote en ligne du COMGENDGP"
                 ]
             ],
             "Matériel" => [
