@@ -15,7 +15,7 @@
 		<div class="categorie-ctnr">
 			<div class="categorie grid">
 				{% set i = 0 %}
-				
+
 				{% for categorie in categories %}
 					{% for lien in categorie.getLiens(user.roles) %}
 
@@ -33,13 +33,13 @@
 			</div>
 		</div>
 
-		{% if user.login %}
+		{% if user.userId %}
 			<p class="statut_connexion-ctnr">
-				Connecté en tant que&nbsp;<span class="login">{{user.login}}</span>&nbsp;(<a class="logout-link log-link" href="/logout">déconnexion</a>).
+				Connecté en tant que&nbsp;<span class="login">{{user.title}}</span>&nbsp;(<a class="logout-link log-link" href="{{ path('accueil_logout') }}">déconnexion</a>).
 			</p>
 		{% else %}
 			<p class="statut_connexion-ctnr">
-				<a class="login-link log-link" href="/login">Connectez-vous</a>&nbsp;pour afficher les liens non publics.
+				<a class="login-link log-link" href="{{ path('accueil_login') }}">Connectez-vous</a>&nbsp;pour afficher les liens non publics.
 			</p>
 		{% endif %}
 

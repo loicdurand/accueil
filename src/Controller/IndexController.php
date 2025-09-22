@@ -15,18 +15,19 @@ final class IndexController extends AbstractController
 {
     private $env;
 
-    #[Route('/', name: 'app_index')]
+    #[Route('/', name: 'accueil_index')]
     public function index(#[CurrentUser] ?User $user, Request $request, ManagerRegistry $doctrine): Response
     {
         if (is_null($user)) {
             $user = new User();
         }
-        $session = $request->getSession();
-        $this->env = 'dev'; //$this->getParameter('app.env');
-        if ($this->env === 'prod' &&  $session->get('HTTP_LOGIN')) {
-            $user->setLogin($session->get('HTTP_LOGIN'));
-            $user->setRoles($session->get('HTTP_ROLES'));
-        }
+
+        // $session = $request->getSession();
+        // $this->env = 'dev'; //$this->getParameter('app.env');
+        // if ($this->env === 'prod' &&  $session->get('HTTP_LOGIN')) {
+        //     $user->setUserId($session->get('HTTP_LOGIN'));
+        //     $user->setRoles($session->get('HTTP_ROLES'));
+        // }
 
         $doctrine = $doctrine->getManager();
         $categories = $doctrine->getRepository(Categorie::class)->findAll();
