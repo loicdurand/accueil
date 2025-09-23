@@ -16,17 +16,10 @@ final class IndexController extends AbstractController
     private $env;
 
     #[Route('/', name: 'accueil_index')]
-    public function index(#[CurrentUser] ?User $user, Request $request, ManagerRegistry $doctrine): Response
+    public function index(#[CurrentUser] ?User $user, ManagerRegistry $doctrine): Response
     {
-        if (is_null($user)) {
-            $user = new User();
-        }
-
-        // $session = $request->getSession();
-        // $this->env = 'dev'; //$this->getParameter('app.env');
-        // if ($this->env === 'prod' &&  $session->get('HTTP_LOGIN')) {
-        //     $user->setUserId($session->get('HTTP_LOGIN'));
-        //     $user->setRoles($session->get('HTTP_ROLES'));
+        // if (is_null($user)) {
+        //     $user = new User();
         // }
 
         $doctrine = $doctrine->getManager();
@@ -41,7 +34,7 @@ final class IndexController extends AbstractController
         return $this->render('index/index.html.twig', [
             'categories' => $categories,
             'nb_liens' => $nb_liens,
-            'user' => is_null($user) ? false : $user,
+            'user' => is_null($user) ? new User() : $user,
             'colors' => ['blue', 'red', 'green', 'brown', 'teal', 'purple', 'yellow', 'indigo', 'grey', 'orange']
         ]);
     }

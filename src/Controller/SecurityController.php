@@ -21,7 +21,7 @@ class SecurityController extends AbstractController
         $this->session = $this->requestStack->getSession();
     }
 
-    #[Route(path: '/login', name: 'accueil_login')]
+    #[Route(path: '/login', name: 'accueil_connexion')]
     public function login(): Response
     {
         return $this->redirectToRoute('accueil_index');

@@ -4,7 +4,6 @@ namespace App\Security;
 
 use App\Entity\User;
 use App\Entity\Unite;
-use App\Entity\Groupe;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -37,7 +36,7 @@ class SsoAuthenticator extends AbstractAuthenticator
     public function supports(Request $request): ?bool
     {
         // Détermine si cet authenticator doit être utilisé (ex. : sur une route spécifique)
-        return $request->getPathInfo() === '/login' && (isset($_COOKIE[$_ENV['COOKIE_NAME']]));
+        return $request->getPathInfo() !== '/' && (isset($_COOKIE[$_ENV['COOKIE_NAME']]));
     }
 
     public function authenticate(Request $request): Passport
@@ -111,7 +110,7 @@ class SsoAuthenticator extends AbstractAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         // Redirige ou affiche une erreur en cas d'échec
-        return new RedirectResponse($this->urlGenerator->generate('accueil_login'));
+        return new RedirectResponse($this->urlGenerator->generate('accueil_connexion'));
     }
 
     private function fetchSsoUserData(?string $ssoToken): ?object
