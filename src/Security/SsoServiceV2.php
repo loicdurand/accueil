@@ -20,9 +20,9 @@ class SsoServiceV2
             session_start();
         }
 
-        if (!isset($_SESSION['user'])) {
-            SsoServiceV2::authenticate();
-        }
+        // if (!isset($_SESSION['user'])) {
+        //     SsoServiceV2::authenticate();
+        // }
     }
 
     /**
@@ -81,6 +81,16 @@ class SsoServiceV2
 
         header('Location: ' . $_ENV['PORTAL_URL'] . '?url=' . base64_encode($url));
         exit;
+    }
+
+    static function logout(): void
+    {
+        setcookie($_ENV['COOKIE_NAME'], "", time() - 3600, "/", $_ENV['COOKIE_DOMAIN']);
+        unset($_ENV['COOKIE_NAME']);
+
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_destroy();
+        }
     }
 
     /**

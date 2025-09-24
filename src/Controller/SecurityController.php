@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
     {
         $this->request = Request::createFromGlobals();
         $this->requestStack = $requestStack;
-        $this->session = $this->requestStack->getSession();
+        // $this->session = $this->requestStack->getSession();
     }
 
     #[Route(path: '/login', name: 'accueil_connexion')]

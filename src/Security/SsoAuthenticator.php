@@ -25,32 +25,35 @@ class SsoAuthenticator extends AbstractAuthenticator
     private $urlGenerator;
 
     private $sso;
+    private $ssoToken;
 
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->sso = new SsoServiceV2();
+        $this->ssoToken = isset($_COOKIE[$_ENV['COOKIE_NAME']]) ? $_COOKIE[$_ENV['COOKIE_NAME']] : false;
     }
 
     public function supports(Request $request): ?bool
     {
+
         // Détermine si cet authenticator doit être utilisé (ex. : sur une route spécifique)
-        return $request->getPathInfo() !== '/' && (isset($_COOKIE[$_ENV['COOKIE_NAME']]));
+        return $request->getPathInfo() !== '/'; //&& (isset($_COOKIE[$_ENV['COOKIE_NAME']]));
     }
 
     public function authenticate(Request $request): Passport
     {
 
-        if (!isset($_COOKIE[$_ENV['COOKIE_NAME']])) {
-            $this->sso::authenticate();
+        if ($request->getPathInfo() === '/logout') {
+            $this->sso::logout();
+            return new SelfValidatingPassport(new UserBadge('', fn() => null));
         }
 
-        // Récupère le token SSO
-        $ssoToken = $_COOKIE[$_ENV['COOKIE_NAME']];
+        $this->sso::authenticate();
 
         // Simule une requête au mock SSO pour récupérer les infos utilisateur
-        $ssoData = $this->fetchSsoUserData($ssoToken); // Implémente cette méthode selon ton SSO
+        $ssoData = $this->sso::user();
 
         if (!$ssoData) {
             throw new AuthenticationException('Invalid SSO token');
@@ -110,12 +113,6 @@ class SsoAuthenticator extends AbstractAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         // Redirige ou affiche une erreur en cas d'échec
-        return new RedirectResponse($this->urlGenerator->generate('accueil_connexion'));
-    }
-
-    private function fetchSsoUserData(?string $ssoToken): ?object
-    {
-        $usr = $this->sso::user();
-        return $usr;
+        return new RedirectResponse($this->urlGenerator->generate('accueil_index'));
     }
 }
