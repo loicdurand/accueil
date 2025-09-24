@@ -25,14 +25,12 @@ class SsoAuthenticator extends AbstractAuthenticator
     private $urlGenerator;
 
     private $sso;
-    private $ssoToken;
 
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator)
     {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->sso = new SsoServiceV2();
-        $this->ssoToken = isset($_COOKIE[$_ENV['COOKIE_NAME']]) ? $_COOKIE[$_ENV['COOKIE_NAME']] : false;
     }
 
     public function supports(Request $request): ?bool

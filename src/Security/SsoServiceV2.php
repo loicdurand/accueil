@@ -100,7 +100,7 @@ class SsoServiceV2
      */
     static public function user()
     {
-        return $_SESSION['user'];
+        return array_key_exists('user', $_SESSION) ?  $_SESSION['user'] : null;
     }
 
     /**
