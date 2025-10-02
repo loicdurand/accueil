@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250922190716 extends AbstractMigration
+final class Version20251002155827 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,6 +22,9 @@ final class Version20250922190716 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
             CREATE TABLE categorie (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+        SQL);
+        $this->addSql(<<<'SQL'
+            CREATE TABLE groupe (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(25) DEFAULT NULL, short_name VARCHAR(10) NOT NULL, nickname VARCHAR(11) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
             CREATE TABLE lien (id INT AUTO_INCREMENT NOT NULL, categorie_id INT DEFAULT NULL, adresse VARCHAR(255) NOT NULL, nom VARCHAR(255) NOT NULL, description VARCHAR(1000) DEFAULT NULL, statut VARCHAR(255) DEFAULT NULL, image VARCHAR(255) DEFAULT NULL, actif TINYINT(1) NOT NULL, roles JSON NOT NULL, INDEX IDX_A532B4B5BCF5E72D (categorie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
@@ -54,6 +57,9 @@ final class Version20250922190716 extends AbstractMigration
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE categorie
+        SQL);
+        $this->addSql(<<<'SQL'
+            DROP TABLE groupe
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE lien
