@@ -12,7 +12,7 @@ Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
-    .setPublicPath(env === 'dev' ? '/eleksyon/build' : "https://comgend971.local.gendarmerie.fr/eleksyon/build")
+    .setPublicPath(env === 'dev' ? '/build' : "https://comgend971.local.gendarmerie.fr/eleksyon/build")
 
     // only needed for CDN's or subdirectory deploy
     .setManifestKeyPrefix('build/') // <- à tester
