@@ -19,7 +19,7 @@
 				{% for categorie in categories %}
 					{% for lien in categorie.getLiens(user.roles) %}
 
-						<a id="link-{{ lien.id }}" href="{{ lien.adresse }}" class="link-ctnr col bg-{{colors[i]}}" data-before="{{ lien.nom | raw | first }}" style="width: calc(100% / {{nb_liens}});">
+						<a id="link-{{ lien.id }}" target="_blank" href="{{ lien.adresse }}" class="link-ctnr col bg-{{colors[i]}}" data-before="{{ lien.nom | raw | first }}" style="width: calc(100% / {{nb_liens}});">
 							<div class="link" data-statut="{{lien.statut}}">
 								{{ lien.nom | raw }}
 							</div>
