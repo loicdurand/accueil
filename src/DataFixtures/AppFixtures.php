@@ -30,50 +30,26 @@ class AppFixtures extends Fixture
         $manager->flush();
 
         $categories = [
-            "Police Judiciaire" => [
-                [
-                    "adresse" => "/cerbere",
-                    "nom" => "Cerbere",
-                    "description" => "Application destinée aux unités de recherche",
-                ]
-            ],
+            "Police Judiciaire" => [],
             "Vie pratique" => [
                 [
-                    "adresse" => "#",
-                    "nom" => "GRR",
-                    "description" => "Gestion des Réservations"
+                    "adresse" => "/eleksyon",
+                    "nom" => "Eleksyon 971",
+                    "description" => "Vote en ligne"
                 ],
                 [
-                    "adresse" => "#",
+                    "adresse" => "/resa971",
                     "nom" => "Résa971",
                     "description" => "Réservations de véhicules"
                 ],
                 [
-                    "adresse" => "#",
-                    "nom" => "Silo",
-                    "description" => "Le portail du COMGEND Guadeloupe"
-                ],
-                [
-                    "adresse" => "/eleksyon",
-                    "nom" => "Elèksyon",
-                    "description" => "Le vote en ligne du COMGENDGP"
+                    "adresse" => "/export",
+                    "nom" => "Ti' Botin",
+                    "description" => "Annuaire local"
                 ]
             ],
-            "Matériel" => [
-                [
-                    "adresse" => "#",
-                    "nom" => "Géaude",
-                    "description" => "Géaude est un site d'inventaire de matériel informatique",
-                ]
-
-            ],
-            "Informatique" => [
-                [
-                    "adresse" => "#",
-                    "nom" => "Solaris",
-                    "description" => "Réservations de véhicules"
-                ]
-            ]
+            "Matériel" => [],
+            "Informatique" => []
         ];
 
         foreach ($categories as $nom => $liens) {
