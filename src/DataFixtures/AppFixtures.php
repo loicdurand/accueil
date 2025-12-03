@@ -46,6 +46,11 @@ class AppFixtures extends Fixture
                     "adresse" => "/export",
                     "nom" => "Ti' Botin",
                     "description" => "Annuaire local"
+                ],
+                [
+                    "adresse" => "/phpmyadmin",
+                    "nom" => "PhpMyAdmin",
+                    "description" => "Gestion des bases de données MySQL",
                 ]
             ],
             "Matériel" => [],
