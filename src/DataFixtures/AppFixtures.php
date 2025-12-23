@@ -22,47 +22,57 @@ class AppFixtures extends Fixture
     {
         $categories = [
             "Police Judiciaire" => [
-                [
-                    "adresse" => "/cerbere",
-                    "nom" => "Cerbere",
-                    "description" => "Application destinée aux unités de recherche",
-                ]
+                // [
+                //     "adresse" => "/cerbere",
+                //     "nom" => "Cerbere",
+                //     "description" => "Application destinée aux unités de recherche",
+                // ]
             ],
             "Vie pratique" => [
+                // [
+                //     "adresse" => "#",
+                //     "nom" => "GRR",
+                //     "description" => "Gestion des Réservations"
+                // ],
                 [
-                    "adresse" => "#",
-                    "nom" => "GRR",
-                    "description" => "Gestion des Réservations"
-                ],
-                [
-                    "adresse" => "#",
+                    "adresse" => "/resa971",
                     "nom" => "Résa971",
                     "description" => "Réservations de véhicules"
                 ],
-                [
-                    "adresse" => "#",
-                    "nom" => "Silo",
-                    "description" => "Le portail du COMGEND Guadeloupe"
-                ],
+                // [
+                //     "adresse" => "#",
+                //     "nom" => "Silo",
+                //     "description" => "Le portail du COMGEND Guadeloupe"
+                // ],
                 [
                     "adresse" => "/eleksyon",
                     "nom" => "Elèksyon",
                     "description" => "Le vote en ligne du COMGENDGP"
+                ],
+                [
+                    "adresse" => "/export",
+                    "nom" => "Ti' Botin",
+                    "description" => "L'annuaire local du COMGEND Guadeloupe"
                 ]
             ],
             "Matériel" => [
-                [
-                    "adresse" => "#",
-                    "nom" => "Géaude",
-                    "description" => "Géaude est un site d'inventaire de matériel informatique",
-                ]
+                // [
+                //     "adresse" => "#",
+                //     "nom" => "Géaude",
+                //     "description" => "Géaude est un site d'inventaire de matériel informatique",
+                // ]
 
             ],
             "Informatique" => [
+                // [
+                //     "adresse" => "#",
+                //     "nom" => "Solaris",
+                //     "description" => "Réservations de véhicules"
+                // ]
                 [
-                    "adresse" => "#",
-                    "nom" => "Solaris",
-                    "description" => "Réservations de véhicules"
+                    "adresse" => "/phpmyadmin",
+                    "nom" => "PhpMyAdmin",
+                    "description" => "Administration des bases de données MySQL/MariaDB"
                 ]
             ]
         ];

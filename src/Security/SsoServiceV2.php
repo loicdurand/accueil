@@ -45,10 +45,9 @@ class SsoServiceV2
                 if ($_ENV['APP_ENV'] === 'dev') {
                     $payload = json_decode($json);
                     $user = $payload->user_data;
-                    $grp = $payload->group_data;
                     unset($user->memberOf);
-                    $user->codeunite = $grp->codeunite;
-                    $user->unite = $grp->displayname;
+                    $user->codeunite = $user->departmentNumber;
+                    $user->unite = $user->displayname;
                     $_SESSION['user'] = $user;
                 } else {
                     $_SESSION['user'] = json_decode($json);
@@ -147,12 +146,12 @@ class SsoServiceV2
     // }
 
     /**
-     * Récupère les liste des groupes et les insère dans la session user
-     *
-     * @param string $motif     N'affiche que les groupes contenant le motif
-     *
-     * @return array
-     */
+ * Récupère les liste des groupes et les insère dans la session user
+ *
+ * @param string $motif     N'affiche que les groupes contenant le motif
+ *
+ * @return array
+ */
     // static public function groups($motif = '')
     // {
     //     if (!isset($_SESSION['user']->groups)) {
