@@ -20,41 +20,61 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $user = new User();
-        $user->setLogin('root');
-        $user->setRoles(['ROLE_USER', 'ROLE_SIC']);
-        $password = $this->hasher->hashPassword($user, '12238Gwada');
-        $user->setPassword($password);
-
-        $manager->persist($user);
-        $manager->flush();
-
         $categories = [
-            "Police Judiciaire" => [],
+            "Police Judiciaire" => [
+                // [
+                //     "adresse" => "/cerbere",
+                //     "nom" => "Cerbere",
+                //     "description" => "Application destinée aux unités de recherche",
+                // ]
+            ],
             "Vie pratique" => [
-                [
-                    "adresse" => "/eleksyon",
-                    "nom" => "Eleksyon 971",
-                    "description" => "Vote en ligne"
-                ],
+                // [
+                //     "adresse" => "#",
+                //     "nom" => "GRR",
+                //     "description" => "Gestion des Réservations"
+                // ],
                 [
                     "adresse" => "/resa971",
                     "nom" => "Résa971",
                     "description" => "Réservations de véhicules"
                 ],
+                // [
+                //     "adresse" => "#",
+                //     "nom" => "Silo",
+                //     "description" => "Le portail du COMGEND Guadeloupe"
+                // ],
+                [
+                    "adresse" => "/eleksyon",
+                    "nom" => "Elèksyon",
+                    "description" => "Le vote en ligne du COMGENDGP"
+                ],
                 [
                     "adresse" => "/export",
                     "nom" => "Ti' Botin",
-                    "description" => "Annuaire local"
-                ],
+                    "description" => "L'annuaire local du COMGEND Guadeloupe"
+                ]
+            ],
+            "Matériel" => [
+                // [
+                //     "adresse" => "#",
+                //     "nom" => "Géaude",
+                //     "description" => "Géaude est un site d'inventaire de matériel informatique",
+                // ]
+
+            ],
+            "Informatique" => [
+                // [
+                //     "adresse" => "#",
+                //     "nom" => "Solaris",
+                //     "description" => "Réservations de véhicules"
+                // ]
                 [
                     "adresse" => "/phpmyadmin",
                     "nom" => "PhpMyAdmin",
-                    "description" => "Gestion des bases de données MySQL",
+                    "description" => "Administration des bases de données MySQL/MariaDB"
                 ]
-            ],
-            "Matériel" => [],
-            "Informatique" => []
+            ]
         ];
 
         foreach ($categories as $nom => $liens) {
